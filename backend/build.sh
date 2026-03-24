@@ -5,3 +5,4 @@ pip install -r backend/requirements.txt
 python backend/manage.py collectstatic --no-input
 python backend/manage.py migrate
 python backend/manage.py create_admin
+python backend/manage.py seed_data
