@@ -1,6 +1,6 @@
 # IT Asset Tracker Dashboard
 
-![Python](https://img.shields.io/badge/Python-3.11-blue) ![Django](https://img.shields.io/badge/Django-5.0-green) ![React](https://img.shields.io/badge/React-18-61DAFB) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)
+![Python](https://img.shields.io/badge/Python-3.11-blue) ![Django](https://img.shields.io/badge/Django-5.0-green) ![React](https://img.shields.io/badge/React-18-61DAFB) ![SQLite](https://img.shields.io/badge/SQLite-3-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)
 
 Real-time IT asset tracking system managing 500+ assets with role-based access, automated depreciation alerts, and analytics dashboard.
 
@@ -16,8 +16,8 @@ Real-time IT asset tracking system managing 500+ assets with role-based access, 
 
 ## Architecture
 ```
-React (Vite + Tailwind) → Django REST API → PostgreSQL
-      Vercel                   Render          Supabase
+React (Vite + Tailwind) → Django REST API → SQLite
+      Vercel                   Render          Disk
 ```
 
 ## Setup
@@ -59,7 +59,6 @@ npm run dev
 ```
 SECRET_KEY=your-secret-key
 DEBUG=True
-DATABASE_URL=postgresql://...
 ALLOWED_HOSTS=localhost
 ```
 

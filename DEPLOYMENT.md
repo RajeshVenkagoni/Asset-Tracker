@@ -1,12 +1,6 @@
 # Deployment Guide
 
-## 1. Create Supabase PostgreSQL Database (Free)
-1. Go to https://supabase.com → New Project
-2. Note your project password
-3. Settings → Database → Connection string (URI mode)
-4. Copy the `postgresql://...` string — this is your `DATABASE_URL`
-
-## 2. Deploy Backend to Render (Free)
+## 1. Deploy Backend to Render (Free)
 1. Push backend/ to a GitHub repo
 2. Go to https://render.com → New Web Service
 3. Connect your GitHub repo
@@ -16,19 +10,18 @@
 5. Add Environment Variables:
    - `SECRET_KEY` → generate a random string
    - `DEBUG` → `False`
-   - `DATABASE_URL` → your Supabase connection string
    - `ALLOWED_HOSTS` → `your-app.onrender.com`
 6. Deploy — Render will run migrations automatically via build.sh
 7. After deploy: open Shell → `python manage.py seed_data`
 
-## 3. Deploy Frontend to Vercel (Free)
+## 2. Deploy Frontend to Vercel (Free)
 1. Push frontend/ to GitHub
 2. Go to https://vercel.com → New Project → import repo
 3. Add Environment Variables:
    - `VITE_API_URL` → `https://your-api.onrender.com/api`
 4. Deploy — vercel.json handles SPA routing automatically
 
-## 4. Connect Backend CORS
+## 3. Connect Backend CORS
 In Render dashboard, add environment variable:
 - `CORS_ALLOWED_ORIGINS` → `https://your-app.vercel.app`
 

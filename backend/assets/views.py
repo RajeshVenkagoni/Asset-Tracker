@@ -90,7 +90,7 @@ class AssetViewSet(viewsets.ModelViewSet):
 class AssetAssignmentViewSet(viewsets.ModelViewSet):
     queryset = AssetAssignment.objects.select_related('asset', 'assigned_to', 'assigned_by')
     serializer_class = AssetAssignmentSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filterset_fields = ['asset', 'assigned_to']
     ordering = ['-assigned_date']
 
@@ -105,7 +105,7 @@ class AssetAssignmentViewSet(viewsets.ModelViewSet):
 class MaintenanceLogViewSet(viewsets.ModelViewSet):
     queryset = MaintenanceLog.objects.select_related('asset')
     serializer_class = MaintenanceLogSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filterset_fields = ['asset', 'maintenance_type']
     ordering = ['-date_performed']
 
