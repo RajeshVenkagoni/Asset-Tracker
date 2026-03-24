@@ -15,7 +15,7 @@ from .serializers import (
     MaintenanceLogSerializer, CategorySerializer, UserSerializer, RegisterSerializer
 )
 from .filters import AssetFilter
-from .permissions import AssetPermission
+
 
 
 class RegisterView(generics.CreateAPIView):
@@ -27,12 +27,12 @@ class RegisterView(generics.CreateAPIView):
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.select_related('assigned_to').prefetch_related('maintenance_logs', 'assignments')
-    permission_classes = [AssetPermission]
+    permission_classes = [AllowAny]
     filterset_class = AssetFilter
     search_fields = ['name', 'asset_tag', 'serial_number']
     ordering_fields = '__all__'
@@ -45,7 +45,7 @@ class AssetViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if not (self.request.user.is_staff or self.request.user.is_superuser):
+        if self.request.user.is_authenticated and not (self.request.user.is_staff or self.request.user.is_superuser):
             qs = qs.filter(assigned_to=self.request.user)
         return qs
 
@@ -113,4 +113,4 @@ class MaintenanceLogViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
