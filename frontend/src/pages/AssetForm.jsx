@@ -25,7 +25,7 @@ export default function AssetForm() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    api.get('/users/').then(res => setUsers(res.data || []))
+    api.get('/users/').then(res => setUsers(res.data.results || res.data || []))
     if (isEdit) {
       api.get(`/assets/${id}/`).then(res => {
         const d = res.data
